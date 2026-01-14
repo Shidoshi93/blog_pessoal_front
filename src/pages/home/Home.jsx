@@ -3,58 +3,17 @@ import React from "react";
 function Home() {
   return (
     <>
-        <div 
-            style={{
-            backgroundColor: '#312e81',
-            display: 'flex',
-            justifyContent: 'center',
-            }}
-        >
-            <div 
-                style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    color: 'white',
-                    width: '100%',
-                    maxWidth: '1280px',
-                }}
-            >
-                <div 
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: '1rem 0',
-                    }}
-                >
-                    <h2 
-                        style={{
-                            fontSize: '3rem',
-                            fontWeight: 'bold',
-                        }}
-                    >
+        <main className="bg-indigo-900 flex justify-center">
+            <section className="container grid grid-cols-2 text-white">
+                <article className="flex flex-col gap-4 items-center justify-center py-4">
+                    <h2 className="text-5xl font-bold">
                         Seja bem vinde!
                     </h2>
-                    <p 
-                        style={{
-                            fontSize: '1.25rem',
-                        }}
-                    >
+                    <p className="text-xl">
                         Expresse aqui os seus pensamentos e opiniões!
                     </p>
-                    <button 
-                        style={{
-                            marginTop: '1rem',
-                            padding: '0.5rem 1rem',
-                            fontSize: '1rem',
-                            fontWeight: 'bold',
-                            color: 'white',
-                            backgroundColor: '#312e81',
-                            border: '2px solid white',
-                            borderRadius: '0.5rem',
-                            cursor: 'pointer',
-                        }}
+                    <button
+                        className="mt-4 px-4 py-2 text-lg font-bold text-white bg-indigo-800 border-2 border-white rounded-lg cursor-pointer"
                         onClick={() => {
                             window.alert('Funcionalidade de nova postagem ainda não implementada.');
                         }}
@@ -69,20 +28,16 @@ function Home() {
                     >
                         Nova postagem
                     </button>
-                </div>
-                <div 
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                    }}
-                >
+                </article>
+                <figure className="flex justify-center">
                     <img 
                         src="/src/assets/dev.png" 
                         alt="Ilustração de uma pessoa codando em um laptop"
+                        className="w-2/4 h-auto"
                     />
-                </div>
-            </div>
-        </div>
+                </figure>
+            </section>
+        </main>
     </>
   );
 }
