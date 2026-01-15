@@ -1,8 +1,9 @@
-import { useState } from 'react'
 import Home from './pages/home/Home.jsx'
 import NavBar from './components/navbar/NavBar.jsx'
 import Footer from './components/footer/Footer.jsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Cadastro from './pages/cadastro/Cadastro.jsx'
+import Login from './pages/login/Login.js'
 
 function App() {
 
@@ -12,7 +13,8 @@ function App() {
         <NavBar />
         <div className='flex-1 overflow-auto'>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/home" element={<Home />} />
           </Routes>
         </div>
