@@ -3,9 +3,9 @@ import React from "react";
 function Home() {
   return (
     <>
-        <main className="bg-indigo-900 flex-1 flex justify-center items-start w-full p-20">
-            <section className="w-full h-full flex items-center justify-around px-8">
-                <article className="flex flex-col gap-4 items-center justify-center text-white">
+        <main className="bg-indigo-900 flex justify-center">
+            <section className="container grid grid-cols-2 text-white">
+                <article className="flex flex-col gap-4 items-center justify-center py-4">
                     <h2 className="text-5xl font-bold">
                         Seja bem vinde!
                     </h2>
