@@ -1,25 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import { Activity, useContext } from "react";
 
 function NavBar() {
-  return (
-    <>
-        <nav className="w-full flex justify-center py-4 bg-indigo-900 text-white">
-            <div className="container flex justify-between text-lg mx-8">
-                <Link to="/" className="text-2xl font-bold">Blog Pessoal</Link>
+    const navigate = useNavigate();
 
-                <div>
-                    <ul className="flex gap-4">
-                        <li className="cursor-pointer hover:underline">Postagens</li>
-                        <li className="cursor-pointer hover:underline">Temas</li>
-                        <li className="cursor-pointer hover:underline">Cadastrar Tema</li>
-                        <li className="cursor-pointer hover:underline">Perfil</li>
-                        <li className="cursor-pointer hover:underline">Sair</li>
-                    </ul>
+    const { handleLogout, usuario } = useContext(AuthContext);
+    const usuarioEstaLogado: boolean = usuario.token !== undefined && usuario.token !== "";
+
+    function logout() {
+        handleLogout();
+        alert("Usuário deslogado com sucesso!");
+        navigate("/");
+    }
+
+    return (
+        <>
+            <nav className="w-full flex justify-center py-4 bg-indigo-900 text-white">
+                <div className="container flex justify-between text-lg mx-8">
+                    <Link to="/" className="text-2xl font-bold">Blog Pessoal</Link>
+
+                    <div>
+                        <ul className="flex gap-4">
+                            <li className="cursor-pointer hover:underline">Postagens</li>
+                            <li className="cursor-pointer hover:underline">Temas</li>
+                            <li className="cursor-pointer hover:underline">Cadastrar Tema</li>
+                            <li className="cursor-pointer hover:underline">Perfil</li>
+                            <Activity mode={usuarioEstaLogado ? "visible" : "hidden"}>
+                                <Link to=''><li className="cursor-pointer hover:underline" onClick={logout}>Sair</li></Link>
+                            </Activity>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </>
-  );
+            </nav>
+        </>
+    );
 }
 
 export default NavBar;
