@@ -22,11 +22,11 @@ function NavBar() {
 
                     <div>
                         <ul className="flex gap-4">
-                            <li className="cursor-pointer hover:underline">Postagens</li>
-                            <li className="cursor-pointer hover:underline">Temas</li>
-                            <li className="cursor-pointer hover:underline">Cadastrar Tema</li>
-                            <li className="cursor-pointer hover:underline">Perfil</li>
                             <Activity mode={usuarioEstaLogado ? "visible" : "hidden"}>
+                                <li className="cursor-pointer hover:underline">Postagens</li>
+                                <Link to='/temas' className="cursor-pointer hover:underline">Temas</Link>
+                                <Link to='/cadastrar-tema' className="cursor-pointer hover:underline">Cadastrar Tema</Link>
+                                <li className="cursor-pointer hover:underline">Perfil</li>
                                 <Link to=''><li className="cursor-pointer hover:underline" onClick={logout}>Sair</li></Link>
                             </Activity>
                         </ul>
