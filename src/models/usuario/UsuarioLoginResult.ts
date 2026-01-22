@@ -3,4 +3,5 @@ export default interface UsuarioLoginResult {
     username: string;
     email: string;
     token: string;
+    photo: string;
 }

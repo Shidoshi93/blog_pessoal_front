@@ -23,7 +23,7 @@ function NavBar() {
                     <div>
                         <ul className="flex gap-4">
                             <Activity mode={usuarioEstaLogado ? "visible" : "hidden"}>
-                                <li className="cursor-pointer hover:underline">Postagens</li>
+                                <Link to='/postagens' className="cursor-pointer hover:underline">Postagens</Link>
                                 <Link to='/temas' className="cursor-pointer hover:underline">Temas</Link>
                                 <Link to='/cadastrar-tema' className="cursor-pointer hover:underline">Cadastrar Tema</Link>
                                 <li className="cursor-pointer hover:underline">Perfil</li>
