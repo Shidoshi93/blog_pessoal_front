@@ -3,6 +3,5 @@ export default interface Usuario {
     username: string;
     email: string;
     photo: string;
-    password: string;
     posts?: [];
 }
