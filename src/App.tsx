@@ -12,12 +12,15 @@ import ListaPostagens from './components/postagem/ListaPostagem.js'
 import FormPostagem from './components/postagem/FormPostagem.js'
 import DeletarPostagem from './components/postagem/DeletarPostagem.js'
 import Perfil from './pages/perfil/Perfil.js'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
 
 function App() {
 
   return (
     <div className='flex flex-col h-screen'>
       <AuthProvider>
+        <ToastContainer />
         <BrowserRouter>
           <NavBar />
           <div className='flex-1 overflow-auto'>

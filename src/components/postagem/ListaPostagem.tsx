@@ -5,6 +5,7 @@ import Postagem from "../../models/postagem/Postagem";
 import { AuthContext } from "../../contexts/AuthContext";
 import { buscar } from "../../service/Service";
 import { SyncLoader } from "react-spinners";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 function ListaPostagens() {
     const navigate = useNavigate();
@@ -14,7 +15,6 @@ function ListaPostagens() {
 
     useEffect(() => {
         if (usuario.token === "" || usuario.token === undefined) {
-            alert("Você precisa estar logado!");
             navigate("/");
         }
     }, [usuario.token]);
@@ -23,20 +23,32 @@ function ListaPostagens() {
         buscarPostagens();
     }, []);
 
+    function handleSessaoExpirada() {
+        ToastAlerta("Sua sessão expirou. Por favor, faça login novamente.", "info");
+        handleLogout();
+        navigate("/");
+    }
+
     async function buscarPostagens() {
+        if (!usuario.token) {
+            handleSessaoExpirada();
+            return;
+        }
+
         try {
             setIsLoading(true)
             await buscar('/post', setPostagens, usuario.token)
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                handleLogout()
+                handleSessaoExpirada();
             }
         } finally {
             setIsLoading(false)
         }
     }
+
     return (
-        <>
+        <>{usuario.token &&
             <div className="flex justify-center w-full my-4 pt-6">
                 <div className="container flex flex-col mx-2">
                     {isLoading && (
@@ -61,6 +73,7 @@ function ListaPostagens() {
                     </div>
                 </div>
             </div>
+        }
         </>
     );
 }

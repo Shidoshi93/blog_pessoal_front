@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { cadastrarUsuario } from "../../service/Service";
 import Usuario from "../../models/usuario/Usuario";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 function Cadastro() {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ function Cadastro() {
   });
 
   function redirecionar() {
-    alert("Usuario cadastrado com sucesso!");
-    navigate("/login");
+    ToastAlerta("Usuário cadastrado com sucesso!", "sucesso");
+    navigate("/");
   }
 
   function handleCancelar() {
@@ -59,10 +60,10 @@ function Cadastro() {
       try {
         await cadastrarUsuario(usuario, setUsuario)
       } catch (error) {
-        alert('Erro ao cadastrar usuario')
+        ToastAlerta("Erro ao cadastrar usuário", "erro");
       }
     } else {
-      alert('As senhas não conferem.')
+      ToastAlerta("As senhas não conferem.", "erro");
       setUsuario({ ...usuario, password: '' })
       setConfirmarSenha('')
 
@@ -97,7 +98,7 @@ function Cadastro() {
           <div className="flex flex-col w-full">
             <label htmlFor="email">Email</label>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               value={usuario.email}

@@ -4,6 +4,7 @@ import { ClipLoader, SyncLoader } from "react-spinners"
 import Postagem from "../../models/postagem/Postagem"
 import { AuthContext } from "../../contexts/AuthContext"
 import { buscar, deletar } from "../../service/Service"
+import { ToastAlerta } from "../../utils/ToastAlerta"
 
 function DeletarPostagem() {
 
@@ -20,13 +21,15 @@ function DeletarPostagem() {
         } catch (error: any) {
             if (error.toString().includes('401')) {
                 handleLogout()
+                ToastAlerta("Sua sessão expirou. Por favor, faça login novamente.", "info");
+                navigate("/");
             }
         }
     }
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado')
+            ToastAlerta("Você precisa estar logado!", "info");
             navigate('/')
         }
     }, [token])
@@ -44,13 +47,15 @@ function DeletarPostagem() {
         try {
             await deletar(`/post/${id}`, token)
 
-            alert('Postagem apagada com sucesso')
+            ToastAlerta("Postagem deletada com sucesso!", "sucesso");
 
         } catch (error: any) {
             if (error.toString().includes('401')) {
                 handleLogout()
+                ToastAlerta("Sua sessão expirou. Por favor, faça login novamente.", "info");
+                navigate("/");
             } else {
-                alert('Erro ao deletar a postagem.')
+                ToastAlerta("Erro ao deletar a postagem.", "erro");
             }
         }
 

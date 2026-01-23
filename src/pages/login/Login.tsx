@@ -38,7 +38,7 @@ function Login() {
                     <div className="flex flex-col w-full">
                         <label htmlFor="email">Email</label>
                         <input
-                            type="text"
+                            type="email"
                             id="email"
                             name="email"
                             value={usuarioLogin.email}
