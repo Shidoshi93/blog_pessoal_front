@@ -1,5 +1,6 @@
 import ListaPostagens from "../../components/postagem/ListaPostagem";
 import ModalPostagem from "../../components/postagem/ModalPostagem";
+import devImg from "../../assets/dev.png";
 
 function Home() {
     return (
@@ -17,7 +18,7 @@ function Home() {
                     </article>
                     <figure className="flex justify-center items-center">
                         <img
-                            src="/src/assets/dev.png"
+                            src={devImg}
                             alt="Ilustração de uma pessoa codando em um laptop"
                             className="max-w-md max-h-96 w-auto h-auto"
                         />
