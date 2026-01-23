@@ -26,7 +26,7 @@ function NavBar() {
                                 <Link to='/postagens' className="cursor-pointer hover:underline">Postagens</Link>
                                 <Link to='/temas' className="cursor-pointer hover:underline">Temas</Link>
                                 <Link to='/cadastrar-tema' className="cursor-pointer hover:underline">Cadastrar Tema</Link>
-                                <li className="cursor-pointer hover:underline">Perfil</li>
+                                <Link to='/perfil' className='hover:underline'>Perfil</Link>
                                 <Link to=''><li className="cursor-pointer hover:underline" onClick={logout}>Sair</li></Link>
                             </Activity>
                         </ul>
