@@ -1,5 +1,4 @@
 import Popup from 'reactjs-popup';
-
 import 'reactjs-popup/dist/index.css';
 import FormPostagem from './FormPostagem';
 

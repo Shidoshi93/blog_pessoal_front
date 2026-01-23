@@ -5,6 +5,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../service/Service";
 import { ClipLoader } from "react-spinners";
 import CriarPostagem from "../../models/postagem/CriarPostagem";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 function FormPostagem() {
     const navigate = useNavigate();
@@ -16,12 +17,18 @@ function FormPostagem() {
     const token = usuario.token
     const { id } = useParams<{ id: string }>()
 
+    function handleSessaoExpirada() {
+        ToastAlerta("Sua sessão expirou. Por favor, faça login novamente.", "info");
+        handleLogout();
+        navigate("/");
+    }
+
     async function buscarPostagemPorId(id: string) {
         try {
             await buscar(`/post/${id}`, setPostagem, token)
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                handleLogout()
+                    handleSessaoExpirada();
             }
         }
     }
@@ -31,7 +38,7 @@ function FormPostagem() {
             await buscar(`/theme/${id}`, setTema, token)
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                handleLogout()
+                handleSessaoExpirada();
             }
         }
     }
@@ -41,14 +48,14 @@ function FormPostagem() {
             await buscar('/theme', setTemas, token)
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                handleLogout()
+                handleSessaoExpirada();
             }
         }
     }
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado');
+            ToastAlerta("Você precisa estar logado!", "info");
             navigate('/');
         }
     }, [token])
@@ -89,13 +96,13 @@ function FormPostagem() {
             try {
                 await atualizar(`/post/${id}`, postagem, setPostagem, token);
 
-                alert('Postagem atualizada com sucesso')
+                ToastAlerta("Postagem atualizada com sucesso", "sucesso");
 
             } catch (error: any) {
                 if (error.toString().includes('401')) {
-                    handleLogout()
+                    handleSessaoExpirada();
                 } else {
-                    alert('Erro ao atualizar a Postagem')
+                    ToastAlerta("Erro ao atualizar a Postagem", "erro");
                 }
             }
 
@@ -103,13 +110,13 @@ function FormPostagem() {
             try {
                 await cadastrar(`/post`, postagem, setPostagem, token);
 
-                alert('Postagem cadastrada com sucesso');
+                ToastAlerta("Postagem cadastrada com sucesso", "sucesso");
 
             } catch (error: any) {
                 if (error.toString().includes('401')) {
-                    handleLogout()
+                    handleSessaoExpirada();
                 } else {
-                    alert('Erro ao cadastrar a Postagem');
+                    ToastAlerta("Erro ao cadastrar a Postagem", "erro");
                 }
             }
         }
