@@ -13,6 +13,7 @@ export const cadastrarUsuario = async (usuario: CadastroUsuario, setDados: Funct
 
 export const login = async (login: LoginUsuario, setDados: Function) => {
     const resposta = await api.post(`/auth/login`, login);
+    console.log("no login", resposta.data);
     setDados(resposta.data);
 }
 

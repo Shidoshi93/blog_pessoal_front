@@ -11,6 +11,7 @@ import DeletarTema from './components/tema/DeletarTema.js'
 import ListaPostagens from './components/postagem/ListaPostagem.js'
 import FormPostagem from './components/postagem/FormPostagem.js'
 import DeletarPostagem from './components/postagem/DeletarPostagem.js'
+import Perfil from './pages/perfil/Perfil.js'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
               <Route path="/cadastrar-postagem" element={<FormPostagem />} />
               <Route path="/editar-postagem/:id" element={<FormPostagem />} />
               <Route path="/deletar-postagem/:id" element={<DeletarPostagem />} />
+              <Route path="/perfil" element={<Perfil />} />
             </Routes>
           </div>
           <Footer />
