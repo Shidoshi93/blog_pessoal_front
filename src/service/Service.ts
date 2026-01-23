@@ -3,7 +3,7 @@ import CadastroUsuario from "../models/usuario/CadatroUsuario";
 import LoginUsuario from "../models/usuario/LoginUsuario";
 
 const api = axios.create({
-    baseURL: "https://blog-pessoal-92pz.onrender.com"
+    baseURL: import.meta.env.VITE_API_URL
 });
 
 export const cadastrarUsuario = async (usuario: CadastroUsuario, setDados: Function) => {
